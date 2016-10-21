@@ -1,36 +1,37 @@
 # Transition End
 
-Listen for css transition ends, with delays and transition type targeting.
+Listen for when a css transition ends. You can delay callbacks and target specific and transition types.
 
-Call function when height and width transitions end (space delimited string for multiple transitions)
+Call a function when height and width transitions end (use space delimited string for multiple transition types or an array of strings).
+The transition type will be returned as the first parameter. The event object is returned as the second parameter.
 ```
-$('.box').transitionend('height width', function(e) {
-   console.log(e);
+$('.box').transitionend('height width', function(type) {
+   console.log(type + ' has finished transitioning');
 });
 ```
 
-Call function when height transition ends
+Call a function when only the height transition ends; and show the event object.
 ```
-$('.box').transitionend('height', function(e) {
-   console.log('hello world');
+$('.box').transitionend('height', function(type, e) {
+   console.log('hello world', e);
 });
 ```
 
-Call function when each transitions has ended
+Call a function when every transition has ended. The callback function will be called for each transition type.
 ```
 $('.box').transitionend(function(e) {
    console.log('hello world');
 });
 ```
 
-You can also pass in a number to delay the callback. Add as a number, in milisecond format
+You can also pass in a number to delay the callback. Add as a number, in the milisecond format.
 ```
 $('.box').transitionend(2000, function(e) {
    console.log('hello world with 2 second delay');
 });
 ```
 
-Pass in the string ```'one'``` or ```'on'``` to adjust the type of event handler you'd prefer to use. 'one'is used by default. More details here: [one](http://api.jquery.com/one/) and [on](http://api.jquery.com/on/)
+Passing in the string ```'one'``` or ```'on'``` will adjust the type of event handler you'd prefer to use. 'on' is used by default. What's the different? [one](http://api.jquery.com/one/) removes the event listener after being run once. [on](http://api.jquery.com/on/) will continue to listen for the transition end. 
 ```
 $('.box').transitionend('on', function(e) {
    console.log('hello world');

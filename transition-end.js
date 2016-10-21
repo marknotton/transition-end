@@ -1,5 +1,3 @@
-
-
 (function($) {
   var transitionEnd = 'webkitTransitionEnd oTransitionEnd msTransitionEnd transitionend';
 
@@ -10,7 +8,7 @@
     var callback   = args.pop();
     var transition = false;
     var delay      = false;
-    var onOrOne    = 'one';
+    var onOrOne    = 'on';
 
     // OPTIONS
     if ( options.length ) {
@@ -36,16 +34,16 @@
         if ( transition === false ){
           // All transitions
           // console.log(event.originalEvent.propertyName + ' transition has finished.');
-          return callback.apply(this, [event]);
+          return callback.apply(this, [event.originalEvent.propertyName, event]);
         } else if ( transition.indexOf(event.originalEvent.propertyName) > -1)  {
           // Delay callback
           // console.log(event.originalEvent.propertyName + ' transition has finished.');
           if ( delay && delay !== 0 ) {
             setTimeout(function() {
-              return callback.apply(this, [event]);
+              return callback.apply(this, [event.originalEvent.propertyName, event]);
             }, delay);
           } else {
-            return callback.apply(this, [event]);
+            return callback.apply(this, [event.originalEvent.propertyName, event]);
           }
         }
       });
@@ -55,16 +53,16 @@
         if ( transition === false ){
           // All transitions
           // console.log(event.originalEvent.propertyName + ' transition has finished.');
-          return callback.apply(this, [event]);
+          return callback.apply(this, [event.originalEvent.propertyName, event]);
         } else if ( transition.indexOf(event.originalEvent.propertyName) > -1)  {
           // Delay callback
           // console.log(event.originalEvent.propertyName + ' transition has finished.');
           if ( delay && delay !== 0 ) {
             setTimeout(function() {
-              return callback.apply(this, [event]);
+              return callback.apply(this, [event.originalEvent.propertyName, event]);
             }, delay);
           } else {
-            return callback.apply(this, [event]);
+            return callback.apply(this, [event.originalEvent.propertyName, event]);
           }
         }
       });
