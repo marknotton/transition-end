@@ -31,9 +31,13 @@ $('.box').transitionend(2000, function(e) {
 });
 ```
 
-Passing in the string ```'one'``` or ```'on'``` will adjust the type of event handler you'd prefer to use. 'on' is used by default. What's the different? [one](http://api.jquery.com/one/) removes the event listener after being run once. [on](http://api.jquery.com/on/) will continue to listen for the transition end. 
+Passing in the string ```'one'``` or ```'on'``` will adjust the type of event handler you'd prefer to use. 'on' is used by default. What's the different? [one](http://api.jquery.com/one/) removes the event listener after being run once. [on](http://api.jquery.com/on/) will continue to listen for the transition end.
 ```
 $('.box').transitionend('on', function(e) {
    console.log('hello world');
 });
 ```
+
+## Help is always appreciated
+
+If anyone has the time and courtesy to fork out a vanilla (non-jQuery dependant) version of this plugin, that would be greatly appreciated.
