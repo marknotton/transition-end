@@ -1,14 +1,35 @@
 (function($) {
-  var transitionEnd = 'webkitTransitionEnd oTransitionEnd msTransitionEnd transitionend';
 
-  $.fn.transitionend = function() {
+  function aniListener($this, $event, $callback, $animation, $delay, $type, $count) {
+    // console.log($type + ' has finished.');
+    if ( $delay && $delay !== 0 ) {
+      // Delayed callback
+      // console.log('There is a ' + $delay/1000 + ' seconds delay before the callback is called.');
+      if ( $animation === false || $animation.indexOf($type) > -1)  {
+        var timer = setTimeout(function() {
+          clearTimeout(timer);
+          // console.log('callback has been called.');
+          return $callback.apply($this, [$type, $count, $event]);
+        }, $delay);
+      }
+    } else {
+      // Immediate Callback
+      // console.log('callback has been called.');
+      if ( $animation === false || $animation.indexOf($type) > -1)  {
+        return $callback.apply($this, [$type, $count, $event]);
+      }
+    }
+  }
 
-    var args       = Array.prototype.slice.call(arguments);
-    var options    = args.length > 1 ? args.slice(0,-1) : args;
-    var callback   = args.pop();
-    var transition = false;
-    var delay      = false;
-    var onOrOne    = 'on';
+  function setListener($this, $arguments, $listener, _checkerTransition) {
+    var args       = Array.prototype.slice.call($arguments),
+        options    = args.length > 1 ? args.slice(0,-1) : args,
+        callback   = args.pop(),
+        animation  = false,
+        type       = null,
+        delay      = false,
+        count      = 0,
+        onOrOne    = 'on';
 
     // OPTIONS
     if ( options.length ) {
@@ -18,10 +39,10 @@
           if (option == 'on' || option == 'one') {
             onOrOne = option;
           } else {
-            transition = option.split(' ');
+            animation = option.split(' ');
           }
         } else if ( typeof(option) === 'array' ) {
-          transition = option;
+          animation = option;
         } else if ( typeof(option) === 'number' ) {
           delay = option;
         }
@@ -30,42 +51,24 @@
 
     // ON
     if (onOrOne == 'on') {
-      this.on(transitionEnd, function(event) {
-        if ( transition === false ){
-          // All transitions
-          // console.log(event.originalEvent.propertyName + ' transition has finished.');
-          return callback.apply(this, [event.originalEvent.propertyName, event]);
-        } else if ( transition.indexOf(event.originalEvent.propertyName) > -1)  {
-          // Delay callback
-          // console.log(event.originalEvent.propertyName + ' transition has finished.');
-          if ( delay && delay !== 0 ) {
-            setTimeout(function() {
-              return callback.apply(this, [event.originalEvent.propertyName, event]);
-            }, delay);
-          } else {
-            return callback.apply(this, [event.originalEvent.propertyName, event]);
-          }
-        }
+      $this.on($listener, function(event) {
+        type = _checkerTransition === true ? event.originalEvent.animationName : event.originalEvent.propertyName;
+        count ++;
+        return aniListener($this, event, callback, animation, delay, type, count);
       });
     } else {
     // ONE
-      this.one(transitionEnd, function(event) {
-        if ( transition === false ){
-          // All transitions
-          // console.log(event.originalEvent.propertyName + ' transition has finished.');
-          return callback.apply(this, [event.originalEvent.propertyName, event]);
-        } else if ( transition.indexOf(event.originalEvent.propertyName) > -1)  {
-          // Delay callback
-          // console.log(event.originalEvent.propertyName + ' transition has finished.');
-          if ( delay && delay !== 0 ) {
-            setTimeout(function() {
-              return callback.apply(this, [event.originalEvent.propertyName, event]);
-            }, delay);
-          } else {
-            return callback.apply(this, [event.originalEvent.propertyName, event]);
-          }
-        }
+      $this.one($listener, function(event) {
+        type = _checkerTransition === true ? event.originalEvent.animationName : event.originalEvent.propertyName;
+        count ++;
+        return aniListener($this, event, callback, animation, delay, type, count);
       });
     }
   };
+
+  $.fn.transitionend = function() {
+    setListener(this, arguments, 'webkitTransitionEnd oTransitionEnd msTransitionEnd transitionend', false);
+    return this;
+  }
+
 }( jQuery ));
