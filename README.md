@@ -7,7 +7,7 @@ Listen for css transition events. You can delay callbacks and target specific tr
 - ~~transitionstart()~~ This doesn't exist, sorry.
 - ~~transitioniteration()~~ This doesn't exist, sorry.
 
-** Check out my [Animations Listener plugin](https://github.com/marknotton/animation-listener) if you want to listen for animation events as well as all the features of this plugin **
+**Check out my [Animations Listener plugin](https://github.com/marknotton/animation-listener) if you want to listen for animation events as well as all the features of this plugin**
 
 Three parameters are returned to the function.
 
