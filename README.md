@@ -2,6 +2,23 @@
 
 Listen for css transition events. You can delay callbacks and target specific transition types.
 
+## Installation
+
+### [NPM](https://www.npmjs.com/package/transition-end-listener)
+```
+npm i transition-end-listener
+```
+
+### [Yarn](https://yarnpkg.com/en/package/transition-end-listener)
+```
+yarn add transition-end-listener
+```
+
+### Bower
+```
+bower install transition-end-listener
+```
+
 ## Listener functions
 - transitionend() - [Official Documenation](https://developer.mozilla.org/en-US/docs/Web/Events/transitionend)
 - ~~transitionstart()~~ This doesn't exist, sorry.
