@@ -1,0 +1,9 @@
+{
+  "name": "transition-end-listener",
+  "version": "1.0.0",
+  "description": "Listen for css transition ends, with delays and transition type targeting.",
+  "main": "transition-end-listener.js",
+  "repository": "https://github.com/marknotton/transition-end-listener",
+  "author": "Mark Notton <mark@marknotton.uk>",
+  "license": "MIT"
+}

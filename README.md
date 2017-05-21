@@ -1,4 +1,4 @@
-# CSS Transition End Listener
+# Transition End Listener
 
 Listen for css transition events. You can delay callbacks and target specific transition types.
 

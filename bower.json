@@ -1,7 +1,7 @@
 {
-  "name": "transition-end",
+  "name": "transition-end-listener",
   "ignore": [],
-  "homepage": "https://github.com/marknotton/transition-end",
+  "homepage": "https://github.com/marknotton/transition-end-listener",
   "author": {
     "name": "Mark Notton",
     "url": "http://www.marknotton.uk"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marknotton/transition-end"
+    "url": "https://github.com/marknotton/transition-end-listener"
   },
   "version": "1.0.0",
   "_release": "1.0.0",
@@ -25,7 +25,7 @@
     "animationstart",
     "animationiteration"
   ],
-  "_source": "git://github.com/marknotton/transition-end.git",
+  "_source": "git://github.com/marknotton/transition-end-listener.git",
   "_target": "^1.0.0",
   "_originalSource": "marknotton"
 }
